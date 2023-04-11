@@ -3,30 +3,35 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("Country", {
-    //-  ID (Código de tres letras).
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
+  sequelize.define(
+    "Country",
+    {
+      //-  ID (Código de tres letras).
+      id: {
+        type: DataTypes.STRING(3),
+        primaryKey: true,
+        unique: false,
+      },
+      //-  Nombre. \*
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      //-  Imagen de la bandera. \*
+      flags: { type: DataTypes.STRING, allowNull: false },
+      //-  Continente. \*
+      region: { type: DataTypes.STRING, allowNull: false },
+      //-  Capital. \*
+      capital: { type: DataTypes.STRING },
+      //-  Subregión.
+      subregion: { type: DataTypes.STRING },
+      //-  Área.
+      area: { type: DataTypes.INTEGER },
+      //-  Población. \* */
+      population: { type: DataTypes.INTEGER, allowNull: false },
     },
-    //-  Nombre. \*
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    //-  Imagen de la bandera. \*
-    flags: { type: DataTypes.STRING, allowNull: false },
-    //-  Continente. \*
-    region: { type: DataTypes.STRING, allowNull: false },
-    //-  Capital. \*
-    capital: { type: DataTypes.STRING },
-    //-  Subregión.
-    subregion: { type: DataTypes.STRING },
-    //-  Área.
-    area: { type: DataTypes.INTEGER },
-    //-  Población. \* */
-    population: { type: DataTypes.INTEGER, allowNull: false },
-  });
+    {
+      timestamps: false,
+    }
+  );
 };
