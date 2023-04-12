@@ -4,7 +4,10 @@ const saveApiData = require("../controllers/saveApiData");
 const getCountries = require("../controllers/getAllChars");
 const getCountryByID = require("../controllers/getById");
 const createActivity = require("../controllers/createActivity");
-const getActivities = require("../controllers/getActivities");
+const {
+  getActivity,
+  getActivityById,
+} = require("../controllers/getActivities");
 const deleteActivity = require("../controllers/deleteActivity");
 //router
 const router = Router();
@@ -34,8 +37,18 @@ router.get("/countries", async (req, res) => {
 
 router.get("/activities", async (req, res) => {
   try {
-    const activities = await getActivities();
+    const activities = await getActivity();
     res.status(200).json(activities);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/activities/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    const country = await getActivityById(id);
+    res.status(200).json(country);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
