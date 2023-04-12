@@ -1,17 +1,26 @@
 const { Router } = require("express");
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+
 const saveApiData = require("../controllers/saveApiData");
 const getCountries = require("../controllers/getAllChars");
 const getCountryByID = require("../controllers/getById");
-
+const createActivity = require("../controllers/createActivity");
+const getActivities = require("../controllers/getActivities");
+const deleteActivity = require("../controllers/deleteActivity");
+//router
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+//Routers Configuration:
 router.get("/saveall", saveApiData);
-router.get("/countries/:id", getCountryByID);
-router.get("/countries");
+
+router.get("/countries/:id", async (req, res) => {
+  let { id } = req.params;
+  try {
+    const country = await getCountryByID(id);
+    res.status(200).json(country);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 router.get("/countries", async (req, res) => {
   const name = req.query;
@@ -22,22 +31,24 @@ router.get("/countries", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-/*
-Tu servidor deberá contar con las siguientes rutas:
 
-#### **📍 GET | /countries/:idPais**
--  Tiene que incluir los datos de las actividades turísticas asociadas a este país.
+router.get("/activities", async (req, res) => {
+  try {
+    const activities = await getActivities();
+    res.status(200).json(activities);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-#### **📍 POST | /activities**
-
--  Esta ruta recibirá todos los datos necesarios para crear una actividad turística y relacionarla con los países solicitados.
--  Toda la información debe ser recibida por body.
--  Debe crear la actividad turística en la base de datos, y esta debe estar relacionada con los países indicados (al menos uno).
-
-#### **📍 GET | /activities**
-
--  Obtiene un arreglo de objetos, donde cada objeto es una actividad turística.
-
-*/
-
+router.post("/activities", createActivity);
+router.delete("/activities/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await deleteActivity(id);
+    res.status(200).json({ deleted });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports = router;

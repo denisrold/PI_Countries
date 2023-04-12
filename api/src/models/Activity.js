@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        unique: true,
         autoIncrement: true,
         primaryKey: true,
       },
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       duration: {
         type: DataTypes.INTEGER,
         validate: {
-          min: 0,
+          min: 1,
         },
       },
       // -  Temporada (Verano, Otoño, Invierno o Primavera). \*
