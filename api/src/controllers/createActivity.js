@@ -3,14 +3,14 @@ const { Activity, Country } = require("../db");
 const createActivity = async (req, res) => {
   const { name, difficulty, duration, season, country } = req.body;
   try {
-    if (!name || !difficulty || !duration || !season) {
+    if (!name || !difficulty || !duration || !season || !country.length) {
       res.status(400).json("Faltan datos");
     } else {
       const [newAct, created] = await Activity.findOrCreate({
         where: { name: name },
         defaults: {
-          difficulty: difficulty,
-          duration: duration,
+          difficulty: Number(difficulty),
+          duration: Number(duration),
           season: season,
         },
       });

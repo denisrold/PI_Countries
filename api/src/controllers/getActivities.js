@@ -1,7 +1,15 @@
 const { Activity, Country } = require("../db");
 
 const getActivity = async () => {
-  const activities = await Activity.findAll();
+  const activities = await Activity.findAll({
+    include: {
+      model: Country,
+      attributes: ["id", "name", "region", "subregion"],
+      through: {
+        attributes: [],
+      },
+    },
+  });
   return activities;
 };
 

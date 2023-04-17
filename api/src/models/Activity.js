@@ -28,14 +28,14 @@ module.exports = (sequelize) => {
       },
       // -  Duración (en horas).
       duration: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DOUBLE,
         validate: {
-          min: 1,
+          min: 0,
         },
       },
       // -  Temporada (Verano, Otoño, Invierno o Primavera). \*
       season: {
-        type: DataTypes.ENUM("Verano", "Otoño", "Invierno", "Primavera"),
+        type: DataTypes.ENUM("Summer", "Fall", "Winter", "Spring"),
         allowNull: false,
       },
     },
