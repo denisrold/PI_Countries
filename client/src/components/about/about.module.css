@@ -1,0 +1,36 @@
+.about{
+    margin-top:100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -100px;
+}
+
+.containertext{
+    width: 800px;
+    height: 400px;
+}
+
+
+.logos{
+    width: 15%;
+    cursor:pointer;
+    border-radius: 999px;
+    transition: 0.5s;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logos:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 6px 1.5px rgb(118, 118, 118);
+    filter: brightness(1.4);
+}
+.logos:active{
+transform: scale(0.8);
+box-shadow: 0 0 4px 0.9px rgb(118, 118, 118);
+}
+
+.orderLog{
+    display: flex;
+    flex-direction: row;
+}

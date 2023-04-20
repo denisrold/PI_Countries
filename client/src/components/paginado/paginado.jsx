@@ -1,18 +1,21 @@
+import style from"./paginado.module.css"
+
 export default function Paginado ({countriesPerPage,allCountries,paginado}){
 const pageNumbers = [];
 
-for(let i=0; i <= Math.ceil(allCountries/countriesPerPage) ; i++){
+for(let i=0; i <= Math.ceil(allCountries/countriesPerPage) - 1; i++){
     pageNumbers.push(i+1);
 }
 
 return(
         <nav>
-            <ul>
-                {pageNumbers && pageNumbers.map(number=>
+            <ul className={style.paginado}>
+                {pageNumbers && pageNumbers.map(number=>(
                 <li key={number}>
-                <a onClick={()=>{paginado(number)}} >{number}</a>
+                { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                <a href="#" onClick={()=>{paginado(number)}} >{number}</a>
                 </li>
-                )}
+                ))}
             </ul>
         </nav>
 

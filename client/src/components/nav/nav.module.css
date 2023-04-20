@@ -1,0 +1,55 @@
+.nav{
+    position:fixed;
+    top: 3px;
+    width: 99%;
+    left: 5px;
+    right: auto;
+    margin: 0 auto 0;
+    height: 70px;
+    border: 2px black solid;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: auto;
+    z-index: 10;
+}
+
+.logo{
+    position: static;
+    display: block;
+    border: 2px black solid;
+    margin-right: 150px;
+
+   height: 98%;
+   width: 80px;
+}
+
+.title{
+   display: inline-block;
+   margin-right: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 30px;
+}
+
+.list{
+font-size: 20px;
+list-style: none;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-right: 20px
+}
+
+.list li a{
+    text-decoration: none;
+    color: black;   
+    margin-right: 20px;
+    border: solid 2px black;
+    padding: 0.4rem;
+    border-radius: 8px;
+}
+
+ .nav a:hover {
+  background-color: aquamarine;  
+}

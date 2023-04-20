@@ -5,7 +5,7 @@ const getCountryByID = async (id) => {
   const country = await Country.findByPk(id, {
     include: {
       model: Activity,
-      attributes: ["name", "season", "duration", "difficulty"],
+      attributes: ["name", "season", "duration", "difficulty", "id"],
       through: {
         attributes: [],
       },

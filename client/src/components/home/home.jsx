@@ -1,85 +1,139 @@
 import Cards from "../cards/cards";
 import { useEffect, useState} from "react";
-import { useSelector } from "react-redux";
-import { useDispatch} from"react-redux";
-import { getAllCountries } from "../redux/actions";
-import {filterByRegion} from "../redux/actions";
+import { useSelector,useDispatch } from "react-redux";
+import { getAllCountries,getAllActivity, filterByRegion,filterByActivity, orderAlpha, orderPopulation } from "../redux/actions";
+import SearchBar from "../searchbar/searchbar";
 import Paginado from"../paginado/paginado";
-
+import paginadoAux from "../paginado/paginadoAux";
+import style from"./home.module.css"
+import errorOrder from"../utils/errorOrders"
 
 const Home = ()=>{
+
     const dispatch = useDispatch();
-  
+    
+    // obtengo  countries de la base de datos.
     useEffect(()=>{
-    dispatch(getAllCountries())
-    },[])
-
+    dispatch(getAllCountries());
+    dispatch(getAllActivity())
+    },[dispatch])
+    
+    //estado global.
     const allCountries = useSelector(state => state.allCountries);
+    const allActivities = useSelector(state => state.allActivities);
 
+    //configuracion del paginado
     const [currentPage, setCurrentPage] = useState(1);
+    /* eslint-disable-next-line no-unused-vars */
     const [countriesPerPage, setCountriesPerPage] = useState(10);
-    const indexLastCountry = currentPage * countriesPerPage; // 10
-    const indexFirstCountry = indexLastCountry - countriesPerPage; //0
-    const currentCountries = allCountries.slice(indexFirstCountry,indexLastCountry);
- 
+    const currentCountries = paginadoAux(currentPage, countriesPerPage, allCountries);
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     };
 
-    const allcountriesHandler = ()=>{
-        dispatch(getAllCountries())
-    };
+    //mensajes informativos.
+    const [filter, setFilter] = useState("All countries");
+    const [orders, setOrders] = useState("");
+    const [searchValue, setSearchValue] = useState('');
 
+
+    //handlers filters   
     const handleFilterByRegion= (event)=>{
-       // if(allCountries.length < 250) await dispatch(getAllCountries()); OTRA SOLUCION AL FILTER
+        setOrders("")
+        let message = event.target.value;
         dispatch(filterByRegion(event.target.value))
+        setCurrentPage(1);
+        event.target.value = "default"
+        setSearchValue("");
+        setFilter(message)
     }
+
+    const handleFilterByActivity = (event)=>{
+        setOrders("")
+        let message = event.target.value;
+        dispatch(filterByActivity(event.target.value))
+        setCurrentPage(1);
+        event.target.value = "default"
+        setFilter(message)
+        
+    }
+
+    //handlers orders
+    const handleOrderAlpha=(event)=>{
+        let message = event.target.value;
+        dispatch(orderAlpha(event.target.value))
+         event.target.value = "default"
+        setCurrentPage(1);
+        setOrders(message)
+        errorOrder(currentCountries,setOrders);
+    }
+
+    const handleOrderPopulation=(event)=>{
+        let message = event.target.value;
+        dispatch(orderPopulation(event.target.value))
+        event.target.value ="default"
+        setCurrentPage(1);
+        setOrders(message)
+        errorOrder(currentCountries,setOrders);
+    }
+
+
+    
     return(
-        <div>
-            <h1>This is Countries time's!</h1>
-            <button onClick={allcountriesHandler}> Show all coutries</button>
+        <div className={style.home}>
+          
+            
             <div>
+                <span style={{fontWeight:`bold`}}>Filter by: </span>
                 <select onChange={handleFilterByRegion}>
-                    <option value="All">Filtrar por region</option>
+                    <option value="default">Region</option>
+                    <option value="All countries">All countries</option>
                     <option value="Americas">Americas</option>
                     <option value="Oceania">Oceania</option>
                     <option value="Europe">Europe</option>
                     <option value="Antarctic">Antarctic</option>
                     <option value="Africa">Africa</option>
                     <option value="Asia">Asia</option>
+                </select>
 
+                <select onChange={handleFilterByActivity}>
+                    <option value="default" >Activity</option>
+                   {allActivities.map(a=>{
+                   return(<option key={a.id} id={a.id} value={a.name}>{a.name}</option>)}
+                   )}
                 </select>
-                <select>
-                    <option value="filter">Filtrar paises</option>
-                    <option value="actividad">Por Actividad turistica</option>
+
+                <span style={{marginLeft: `30px`, fontWeight:`bold`}}>Order by: </span>
+                <select onChange={handleOrderPopulation}>
+                    <option value="default">Population</option>
+                    <option value="Population: Ascending order">Ascending order</option>
+                    <option value="Population: Descending order">Descending order</option>
                 </select>
-                <select>
-                    <option value="order">Ordenar</option>
-                    <option value="population">por cantidad de población</option>
-                    <option value="alpha">Ordenar Alfabeticamente</option>
-                    <option value="ascen">Orden Ascendente</option>
-                    <option value="descen">Orden Descendente</option>
+
+                <select onChange={handleOrderAlpha}>
+                    <option value="default">Alphabetically</option>
+                    <option value="A - Z">Ascending (A - Z)</option>
+                    <option value="Z - A">Descending (Z - A)</option>
                 </select>
+
             </div>
-            <Paginado 
-            countriesPerPage = {countriesPerPage}
-            allCountries = {allCountries.length}
-            paginado = {paginado}
-            />
+            <div style={{marginTop: `10px`}}> 
+            <SearchBar setSearchValue={setSearchValue} setOrders={setOrders} />
+            </div>
+            <div className={style.paginado}>
+                <Paginado 
+                countriesPerPage = {countriesPerPage}
+                allCountries = {allCountries.length}
+                paginado = {paginado}
+                />
+            </div>
+            <h2>{searchValue===""? filter : "Country matched:"}</h2>
+                {orders && <h3>{orders}</h3>}
+            
             <Cards currentCountries={currentCountries}/>
+            
         </div>
     )
 }
 
 export default Home;
-/*
-📍 HOME PAGE |** la página principal de tu SPA debe contener:
--  SearchBar: un input de búsqueda para encontrar países por nombre.
--  Sector en el que se vea un listado de cards con los países. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta **`GET /countries`** y deberá mostrar su:
-   -  Imagen de la bandera.
-   -  Nombre.
-   -  Continente.
--  Botones/Opciones para **filtrar** por continente y por tipo de actividad turística.
--  Botones/Opciones para **ordenar** tanto ascendentemente como descendentemente los países por orden alfabético y por cantidad de población.
--  Paginado: el listado de países se hará por partes. Tu SPA debe contar con un paginado que muestre un total de 10 países por página.
- */

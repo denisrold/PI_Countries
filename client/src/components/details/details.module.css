@@ -1,0 +1,41 @@
+.details{
+    margin-top: 100px;
+    
+}
+
+.information{
+
+display: inline-block;
+border: 2px red solid;
+border-radius: 10px;
+width: fit-content;
+margin-left: auto;
+margin-top: auto;
+padding: 20px;
+
+}
+
+.information img{
+    width:380px;
+    height: 230px;
+    border: 2px black solid;
+}
+
+.activityList ul{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    
+}
+.activityList ul li{
+list-style: none;
+border: 1px black solid;
+border-radius: 10px;
+width: 450px;
+margin-top: 20px;
+}
+
+.activityList ul li a{
+color: black;
+text-decoration: none;
+}

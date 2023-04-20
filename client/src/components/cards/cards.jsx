@@ -1,8 +1,9 @@
+
 import Card from "../card/card";
 import styles from"./cards.module.css"
 const Cards = (props)=>{
 return(
-    <div className={styles.cards}>
+    <div className={props.currentCountries.length > 1? styles.cards:styles.onecard}>
         {props.currentCountries.map(country=>{
             return <Card 
             key={country.id} 

@@ -8,7 +8,7 @@ return(
         <h1>{props.name}</h1>
         <img src={props.flags} alt="Flag"/>
         </Link>
-        <h3>{props.subregion}</h3>
+        <h3>Region: {props.subregion}</h3>
     </div>
 );
 };

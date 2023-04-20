@@ -1,12 +1,20 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch} from"react-redux";
 import { getAllActivity } from "../redux/actions";
+import { useSelector } from "react-redux";
+import  {getAllCountries} from"../redux/actions";
 import validate from "./Validations";
-
+import style from"./form.module.css"
 
 const Form = () => {
     const dispatch = useDispatch();
+    const countries = useSelector(state => state.allCountriesAux)
+    
+    useEffect(()=>{
+        dispatch(getAllCountries());
+    },[dispatch])
+
     const [Activity, setActivity] = useState({
         name:"",
         difficulty:0, 
@@ -20,20 +28,32 @@ const Form = () => {
         difficulty:"", 
         duration:"", 
         season:"", 
-        country:[],
+        country:"",
     })
-   
+
     const handleChange=(event)=>{
-        if(event.target.name === "country"){
-            let property = event.target.name;
-            let value = event.target.value.split(",");
-            value = value.map(country => country);
-            setActivity({...Activity,
-                [property]: value})
-            setErrors(validate({...Activity,[property]: value},errors));
-            }
+        let property = event.target.name
+        
+        if(property === "country"){
+            const isChecked = event.target.checked;
+            let country = event.target.value;
+                if(isChecked){
+                    setActivity({...Activity,
+                        country:[...Activity.country, country] })
+                        
+                    setErrors(validate({...Activity,[property]: country},errors));
+                }
+                else{
+                    const countryRemove = country;
+                    const removeCountryArray = Activity.country.filter(c=>c !== countryRemove);
+                    setActivity({
+                        ...Activity,
+                        country:removeCountryArray,
+                    })
+                    setErrors(validate({...Activity,[property]: country},errors));
+                }}
+
         else {
-            let property = event.target.name;
             let value = event.target.value;
             setActivity({...Activity,
             [property]: value})
@@ -47,7 +67,7 @@ const Form = () => {
             try {
                 await axios.post(`http://localhost:3001/activities`, Activity)
                
-                alert(`The activity: ${Activity.name} has been created`);
+                alert(`The new activity: ${Activity.name} has been created`);
                 
                 setActivity({
                     name:"",
@@ -56,7 +76,7 @@ const Form = () => {
                     season:"", 
                     country:[],
                     });
-                    
+               
                 dispatch(getAllActivity());
             } catch (error) {
                 console.log(error);
@@ -66,22 +86,23 @@ const Form = () => {
         }
 
     return(
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className={style.form}>
+                <h2 style={{marginTop:`40px`}}>Create New Activity</h2>
+                <div className={style.items}>
                 <div>
                     <label htmlFor="name">Name: </label>
-                    <input type="text" name="name" value={Activity.name} onChange={handleChange}></input>
-                    <span>{errors.name}</span>
+                    <input type="text" name="name" value={Activity.name} onChange={handleChange} placeholder="Activity name..."></input>
+                    <span className={style.errors}>{errors.name}</span>
                 </div>
-                <div>
+
+                <div style={{marginBottom:`15px`,marginTop:`15px`}}>
                     <label htmlFor="duration">Duration: </label>
-                    <input type="text" name="duration" value={Activity.duration} onChange={handleChange}></input> 
-                    <span>{errors.duration}</span>
+                    <input type="text" name="duration" value={Activity.duration} onChange={handleChange} placeholder='"X" hours...'></input> 
+                    <span className={style.errors}>{errors.duration}</span>
                 </div>
+                
                 <div>
-                    <label htmlFor="country">Country: </label>
-                    <input type="text" name="country" value={Activity.country} onChange={handleChange}></input><span>{errors.country}</span>
-                </div>
-                <div>
+
             {/*DIFFICULTY LEVEL SELECT*/}
               <label htmlFor='difficulty'>Difficulty level: </label>
 
@@ -99,25 +120,39 @@ const Form = () => {
 
               <input type="radio" id='5' name='difficulty' value='5' onChange={handleChange}/>
               <label htmlFor='5'>5</label>
-              <span>{errors.difficulty}</span>
+              <span className={style.errors}>{errors.difficulty}</span>
             </div>
+
             {/* SEASON SELECT */}
             <div>
               <label htmlFor="season"> Season:</label>
-              <select value={Activity.season} onChange={handleChange} name="season">
+              <select value={Activity.season} onChange={handleChange} name="season" style={{marginBottom:`15px`,marginTop:`15px`}}>
                 <option value="" disabled >Select</option>
                 <option value={"Summer"} >Summer</option>
                 <option value={"Spring"}>Spring</option>
                 <option value={"Fall"}>Fall</option>
                 <option value={"Winter"}>Winter</option>
               </select>
-              <span>{errors.season}</span>
+              <span className={style.errors}>{errors.season}</span>
               </div>
-                <button type="submit" disabled={errors.name||errors.difficulty||errors.duration||errors.country||errors.season}>Add activity</button>
+              </div>
+              
+              {/* COUNTRY SELECT */}
+            <span className={style.errors}>{errors.country}</span>
+            <div className={style.countries}>
+                    {countries.map(c => {
+                    return(
+                    <div key={c.id}>
+                    <input type="checkbox" id={c.id} name="country" value={c.name} onChange={handleChange}/>
+                    <label htmlFor={c.id}>{c.name}</label>
+                    </div>
+                    )})}
+            </div>
+            <div className={style.button}>
+                <button type="submit" disabled={errors.name||errors.difficulty||errors.duration||errors.season||errors.country}>Add activity</button>
+            </div>
         </form>
     )
 }
 
 export default Form;
-
-//-  Posibilidad de seleccionar/agregar varios países en simultáneo.

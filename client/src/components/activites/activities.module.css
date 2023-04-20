@@ -1,0 +1,38 @@
+
+.activities{
+    margin-top: 100px;
+}
+
+.listAct{
+  display: flex;
+  justify-content: center;
+  margin-left:-50px;
+}
+
+.list li{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-around;
+    border: 2px black solid;
+    border-bottom: none;
+    text-decoration: none;
+    list-style: none;
+    width: 700px;
+    height: 65px
+}
+.list li:first-child{
+    height: 50px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.list li:last-child{
+    border-bottom: 2px black solid;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.list li p {
+    width: calc(20% - 10px); /* Ancho fijo de los elementos */
+}
+

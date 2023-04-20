@@ -1,5 +1,24 @@
-.card{
-    border: 1.5px rgb(0, 0, 0) solid;
-    width: fit-content;
-    margin: 10px;
+.card { 
+    background-color: rgba(240, 240, 240, 0.126);
+    border: 2px solid #000000;
+    padding: 20px;
+    width: 60%;
+    height: 90%;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+.card a {text-decoration: none;}
+
+.card h1{
+    font-size: 22px;
+    color: black;
+}
+
+.card img {
+    width:230px;
+    height: 150px;
+    filter: contrast(1.1);
+    filter:brightness(1.1);
+    filter:saturate(1.1);
 }
