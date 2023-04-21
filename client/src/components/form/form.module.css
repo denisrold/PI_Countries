@@ -2,10 +2,17 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
-    border: 2px black solid;
+
     max-width: 400px;
     max-height: 600px;
     height: 550px;
+
+    background-color: rgba(33, 50, 66, 0.699);
+    border-radius: 10px;
+    padding: 0.7rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 5px 5px 12px 2px rgba(22, 21, 21, 0.491);
 }
 .items{
  display: grid;

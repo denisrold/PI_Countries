@@ -12,7 +12,6 @@
 
 .card h1{
     font-size: 22px;
-    color: black;
 }
 
 .card img {
@@ -22,3 +21,11 @@
     filter:brightness(1.1);
     filter:saturate(1.1);
 }
+.card h3{
+    display: inline-block;
+}
+.card p{
+    display: inline-block;
+    margin-left: 40px;   
+    color: black;
+  }

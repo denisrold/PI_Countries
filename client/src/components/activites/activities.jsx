@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {getAllActivity} from"../redux/actions"
 import style from"./activities.module.css"
+import convertUppercase from"../utils/convertUppercase";
 
 
 const Activities = ()=>{
@@ -14,10 +15,11 @@ const Activities = ()=>{
 
     return(
         <div className={style.activities}>
-            <h1>This are Activities</h1>
+            
+            <h1>Activities list</h1>
             <div className={style.listAct}>
                 <ul className={style.list}>
-                    <li>
+                    <li className={style.boldList}>
                         <p>ID</p>
                         <p>Name</p>
                         <p>Difficulty</p>
@@ -27,8 +29,8 @@ const Activities = ()=>{
                 {activities.map(a=>{
                     return(
                     <li key={a.id}>
-                        <p>{a.id}</p>
-                        <p>{a.name}</p>
+                        <p><b>{a.id}</b></p>
+                        <p>{convertUppercase(a.name)}</p>
                         <p>{a.difficulty}</p>
                         <p>{a.duration} Hs.</p>
                         <p>{a.season}</p>

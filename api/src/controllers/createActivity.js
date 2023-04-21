@@ -6,25 +6,19 @@ const createActivity = async (req, res) => {
     if (!name || !difficulty || !duration || !season || !country.length) {
       res.status(400).json("Missing data");
     } else {
-      const [newAct, created] = await Activity.findOrCreate({
-        where: { name: name },
-        defaults: {
-          difficulty: Number(difficulty),
-          duration: Number(duration),
-          season: season,
-        },
+      const newAct = await Activity.create({
+        name,
+        difficulty,
+        duration,
+        season,
       });
-      if (created) {
-        const countries = await Country.findAll({ where: { name: country } });
-        if (!countries) {
-          return res.status(404).json("Country not found");
-        }
-        await newAct.addCountry(countries);
-        await newAct.reload();
-        res.status(200).json(newAct);
-      } else {
-        return res.status(400).json("That activity already exists");
+      const countries = await Country.findAll({ where: { name: country } });
+      if (!countries) {
+        return res.status(404).json("Country not found");
       }
+      await newAct.addCountry(countries);
+      await newAct.reload(); //actualizar la página actual de la variable "newAct"
+      res.status(200).json(newAct);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

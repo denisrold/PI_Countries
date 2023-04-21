@@ -80,15 +80,14 @@ const Form = () => {
                 dispatch(getAllActivity());
             } catch (error) {
                 console.log(error);
-                alert(`-Ensure that the values in the inputs are correct.
--The name of the activity cannot be repeated.`)
+                alert(`-Ensure that the values in the inputs are correct.`)
             }
         }
 
     return(
         <form onSubmit={submitHandler} className={style.form}>
-                <h2 style={{marginTop:`40px`}}>Create New Activity</h2>
-                <div className={style.items}>
+            <h2 style={{marginTop:`40px`}}>Create New Activity</h2>
+            <div className={style.items}>
                 <div>
                     <label htmlFor="name">Name: </label>
                     <input type="text" name="name" value={Activity.name} onChange={handleChange} placeholder="Activity name..."></input>
@@ -102,55 +101,53 @@ const Form = () => {
                 </div>
                 
                 <div>
-
             {/*DIFFICULTY LEVEL SELECT*/}
-              <label htmlFor='difficulty'>Difficulty level: </label>
+                    <label htmlFor='difficulty'>Difficulty level: </label>
+                    <input type="radio" id='1' name='difficulty' value='1' onChange={handleChange} />
+                    <label htmlFor='1'>1</label>
 
-              <input type="radio" id='1' name='difficulty' value='1' onChange={handleChange} />
-              <label htmlFor='1'>1</label>
+                    <input type="radio" id='2' name='difficulty' value='2' onChange={handleChange}/>
+                    <label htmlFor='2'>2</label>
 
-              <input type="radio" id='2' name='difficulty' value='2' onChange={handleChange}/>
-              <label htmlFor='2'>2</label>
+                    <input type="radio" id='3' name='difficulty' value='3' onChange={handleChange}/>
+                    <label htmlFor='3'>3</label>
 
-              <input type="radio" id='3' name='difficulty' value='3' onChange={handleChange}/>
-              <label htmlFor='3'>3</label>
+                    <input type="radio" id='4' name='difficulty' value='4' onChange={handleChange}/>
+                    <label htmlFor='4'>4</label>
 
-              <input type="radio" id='4' name='difficulty' value='4' onChange={handleChange}/>
-              <label htmlFor='4'>4</label>
-
-              <input type="radio" id='5' name='difficulty' value='5' onChange={handleChange}/>
-              <label htmlFor='5'>5</label>
-              <span className={style.errors}>{errors.difficulty}</span>
-            </div>
+                    <input type="radio" id='5' name='difficulty' value='5' onChange={handleChange}/>
+                    <label htmlFor='5'>5</label>
+                    <span className={style.errors}>{errors.difficulty}</span>
+                </div>
 
             {/* SEASON SELECT */}
-            <div>
-              <label htmlFor="season"> Season:</label>
-              <select value={Activity.season} onChange={handleChange} name="season" style={{marginBottom:`15px`,marginTop:`15px`}}>
-                <option value="" disabled >Select</option>
-                <option value={"Summer"} >Summer</option>
-                <option value={"Spring"}>Spring</option>
-                <option value={"Fall"}>Fall</option>
-                <option value={"Winter"}>Winter</option>
-              </select>
-              <span className={style.errors}>{errors.season}</span>
-              </div>
-              </div>
+                <div>
+                    <label htmlFor="season"> Season:</label>
+                    <select value={Activity.season} onChange={handleChange} name="season" style={{marginBottom:`15px`,marginTop:`15px`}}>
+                    <option value="" disabled >Select</option>
+                    <option value={"Summer"} >Summer</option>
+                    <option value={"Spring"}>Spring</option>
+                    <option value={"Fall"}>Fall</option>
+                    <option value={"Winter"}>Winter</option>
+                    </select>
+                    <span className={style.errors}>{errors.season}</span>
+                </div>
+            </div>
               
               {/* COUNTRY SELECT */}
-            <span className={style.errors}>{errors.country}</span>
-            <div className={style.countries}>
+                <span className={style.errors}>{errors.country}</span>
+                <div className={style.countries}>
                     {countries.map(c => {
                     return(
                     <div key={c.id}>
-                    <input type="checkbox" id={c.id} name="country" value={c.name} onChange={handleChange}/>
-                    <label htmlFor={c.id}>{c.name}</label>
+                        <input type="checkbox" id={c.id} name="country" value={c.name} onChange={handleChange}/>
+                        <label htmlFor={c.id}>{c.name}</label>
                     </div>
                     )})}
-            </div>
-            <div className={style.button}>
-                <button type="submit" disabled={errors.name||errors.difficulty||errors.duration||errors.season||errors.country}>Add activity</button>
-            </div>
+                </div>
+                <div className={style.button}>
+                    <button type="submit" disabled={errors.name||errors.difficulty||errors.duration||errors.season||errors.country}>Add activity</button>
+                </div>
         </form>
     )
 }

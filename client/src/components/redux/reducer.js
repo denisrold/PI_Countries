@@ -51,14 +51,14 @@ const reducer = (state = initialState, actions) => {
       const activities = [...state.allActivities];
       const countries = [...state.allCountriesAux];
       const matchCountries = [];
+
       const filterActivity = activities.find((a) => a.name === actions.payload);
+
       filterActivity.Countries.forEach((activityCountry) => {
         const matchingCountry = countries.find((country) => {
           return country.name === activityCountry.name;
         });
-        if (matchingCountry) {
-          matchCountries.push(matchingCountry);
-        }
+        matchCountries.push(matchingCountry);
       });
       return {
         ...state,

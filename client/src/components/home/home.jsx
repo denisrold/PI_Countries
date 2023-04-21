@@ -81,8 +81,6 @@ const Home = ()=>{
     
     return(
         <div className={style.home}>
-          
-            
             <div>
                 <span style={{fontWeight:`bold`}}>Filter by: </span>
                 <select onChange={handleFilterByRegion}>
@@ -99,7 +97,7 @@ const Home = ()=>{
                 <select onChange={handleFilterByActivity}>
                     <option value="default" >Activity</option>
                    {allActivities.map(a=>{
-                   return(<option key={a.id} id={a.id} value={a.name}>{a.name}</option>)}
+                   return(<option key={a.id} id={a.id} value={a.name}>{a.name} - {a.id}</option>)}
                    )}
                 </select>
 
