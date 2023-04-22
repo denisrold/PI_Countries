@@ -1,3 +1,48 @@
 .home{
     margin-top: 100px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.878);
+
+}
+
+select{
+border: 2px solid rgb(24, 36, 48);
+border-radius: 8px;
+color: rgb(255, 255, 255);
+text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.708);
+background-color: rgba(33, 50, 66, 0.74);
+}
+
+input{
+    border: 2px solid rgb(24, 36, 48);
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.708);
+    background-color: rgba(33, 50, 66, 0.74);
+}
+input::placeholder{
+    color:rgba(255, 255, 255, 0.648)
+}
+
+button{
+
+    border-radius: 8px;
+    background-color: rgba(33, 50, 66, 0.878);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.741);
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px rgb(24, 36, 48) solid;
+    
+}
+
+button:hover{
+    filter: brightness(1.05);
+}
+button:active{
+    transform: scale(0.95);
+}
+
+.countries{
+    color: rgb(255, 255, 255);
 }

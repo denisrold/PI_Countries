@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {getAllActivity} from"../redux/actions"
 import style from"./activities.module.css"
 import convertUppercase from"../utils/convertUppercase";
+import difficultyConvert from"./difficultyConvert"
 
 
 const Activities = ()=>{
@@ -29,9 +30,9 @@ const Activities = ()=>{
                 {activities.map(a=>{
                     return(
                     <li key={a.id}>
-                        <p><b>{a.id}</b></p>
+                        <p style={{fontSize:"20px"}}><b>{a.id}</b></p>
                         <p>{convertUppercase(a.name)}</p>
-                        <p>{a.difficulty}</p>
+                        <p>{difficultyConvert(a.difficulty)}</p>
                         <p>{a.duration} Hs.</p>
                         <p>{a.season}</p>
                     </li>

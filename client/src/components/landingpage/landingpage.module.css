@@ -1,35 +1,82 @@
+.lateral{
+    position: absolute;
+    background: url("../utils/img/torre.jpg");
+    height: 710px;
+    width: 100%;
+    filter: saturate(1.1);
+}
 .container{
-display: block;
-float: left;
-    flex-wrap: wrap;
-    height: 730px;
+    margin-top: -20px;
+    display: block;
+    float: left;
+    height: 710px;
     width: 60%;
-    border: 2px black solid;
     justify-content: center;
+    color: white;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.708);
+ 
+}
+
+.container h1{
+
+   font-family:'Courier New', Courier, monospace;
+    color: rgb(212, 165, 13);
+    font-size: 42px
 }
 
 .container div{
-    background-color: rgba(33, 50, 66, 0.699);
+    margin-top: -60px;
+    background-color: rgba(33, 50, 66, 0.821);
     border-radius: 10px;
     width: 600px;
-    padding: 0.7rem;
+    padding: 2rem;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 5px 5px 12px 2px rgba(22, 21, 21, 0.491);
+    transition: 0.3s;
+    margin-top: 20px;
 }
-/* border: 1.5px rgb(33, 50, 30) solid; */
+.container div:hover{
+    filter: contrast(1.5);
+    filter: saturate(2);
+}
 .container h1{
-margin-top: 100px;
-margin-bottom: 150px;
+margin-top: 80px;
+margin-bottom: 110px;
 margin-left: auto;
 margin-right: auto;
+}
+.container p{
+    font-size: 19px;
 }
 
 
 .button {
-margin-top: 600px;
 position:flex;
-width: 200px;
-height: 40px;
-border-radius: 5px;
+margin-left: -150px;
+margin-top: 530px;
+width: 300px;
+height: 60px;
+
+border-radius: 0.6rem;
+font-size: 20px;
+font-weight: bold;
+cursor: pointer;
+background-color: rgba(33, 50, 66, 0.462);
+box-shadow: 5px 2px 8px 2px rgba(22, 21, 21, 0.491);
+color:rgb(255, 255, 255);
+text-shadow: 3px 2px 3px black;
+transition: 0.3s;
+border: 2px rgb(24, 36, 48) solid;
+}
+
+.button:hover{
+    transform: scale(1.02);
+    box-shadow: 6px 3px 8px 2px rgba(22, 21, 21, 0.629);
+    filter: contrast(1.5);
+    filter: saturate(2.5);
+}
+.button:active{
+    transform: scale(1.00);
+    box-shadow: 1px 1px 1px 1px rgba(22, 21, 21, 0.491);
 }

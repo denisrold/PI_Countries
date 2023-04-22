@@ -1,8 +1,15 @@
 
 .activities{
-    margin-top: 100px;
+    margin-top: 90px;
+    color: white;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.708);
 }
 
+.activities h1{
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+
+}
 .listAct{
   display: flex;
   justify-content: center;
@@ -10,11 +17,11 @@
 }
 
 .listAct ul{
-    background-color: rgba(33, 50, 66, 0.699);
+    background-color: rgba(33, 50, 66, 0.912);
     border-radius: 10px;
-    width: 705px;
+    width: 745px;
     padding: 0.7rem;
-    margin-left: auto;
+    margin-left: 350px;
     margin-right: auto;
     box-shadow: 5px 5px 12px 2px rgba(22, 21, 21, 0.491);
 }
@@ -23,26 +30,29 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content:space-around;
-    border: 2px black solid;
+    border: 2.5px rgb(24, 36, 48) solid;
     border-bottom: none;
     text-decoration: none;
     list-style: none;
-    width: 700px;
+    width: 740px;
     height: 65px
 }
 .list li:first-child{
     height: 50px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    color: rgb(212, 165, 13);
 }
 .list li:last-child{
-    border-bottom: 2px black solid;
+    border-bottom: 2.5px rgb(24, 36, 48) solid;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
 .list li p {
-    width: calc(20% - 10px); /* Ancho fijo de los elementos */
+    width: calc(17% - 10px); /* Ancho fijo de los elementos */
+    margin-right: 15px;
+   
 }
 
 .boldList {

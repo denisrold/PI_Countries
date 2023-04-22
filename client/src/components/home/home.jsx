@@ -8,6 +8,7 @@ import paginadoAux from "../paginado/paginadoAux";
 import style from"./home.module.css"
 import errorOrder from"../utils/errorOrders"
 
+
 const Home = ()=>{
 
     const dispatch = useDispatch();
@@ -16,17 +17,20 @@ const Home = ()=>{
     useEffect(()=>{
     dispatch(getAllCountries());
     dispatch(getAllActivity())
+    
     },[dispatch])
     
     //estado global.
     const allCountries = useSelector(state => state.allCountries);
     const allActivities = useSelector(state => state.allActivities);
 
+    
     //configuracion del paginado
     const [currentPage, setCurrentPage] = useState(1);
     /* eslint-disable-next-line no-unused-vars */
     const [countriesPerPage, setCountriesPerPage] = useState(10);
     const currentCountries = paginadoAux(currentPage, countriesPerPage, allCountries);
+    
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     };
@@ -116,17 +120,20 @@ const Home = ()=>{
 
             </div>
             <div style={{marginTop: `10px`}}> 
-            <SearchBar setSearchValue={setSearchValue} setOrders={setOrders} />
+                <SearchBar setSearchValue={setSearchValue} setOrders={setOrders} />
             </div>
+
             <div className={style.paginado}>
+               
                 <Paginado 
                 countriesPerPage = {countriesPerPage}
                 allCountries = {allCountries.length}
                 paginado = {paginado}
                 />
+                
             </div>
-            <h2>{searchValue===""? filter : "Country matched:"}</h2>
-                {orders && <h3>{orders}</h3>}
+            <h2 className={style.countries}>{searchValue===""? filter : "Country matched:"}</h2>
+                {orders && <h3 style={{fontSize:'20px'}}>{orders}</h3>}
             
             <Cards currentCountries={currentCountries}/>
             

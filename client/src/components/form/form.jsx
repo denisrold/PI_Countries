@@ -17,7 +17,7 @@ const Form = () => {
 
     const [Activity, setActivity] = useState({
         name:"",
-        difficulty:0, 
+        difficulty:"", 
         duration:"", 
         season:"", 
         country:[],
@@ -86,43 +86,38 @@ const Form = () => {
 
     return(
         <form onSubmit={submitHandler} className={style.form}>
-            <h2 style={{marginTop:`40px`}}>Create New Activity</h2>
+            <h2 >Create activity</h2>
             <div className={style.items}>
                 <div>
-                    <label htmlFor="name">Name: </label>
+                    <label htmlFor="name">Name: </label>
                     <input type="text" name="name" value={Activity.name} onChange={handleChange} placeholder="Activity name..."></input>
                     <span className={style.errors}>{errors.name}</span>
                 </div>
 
                 <div style={{marginBottom:`15px`,marginTop:`15px`}}>
-                    <label htmlFor="duration">Duration: </label>
+                    <label htmlFor="duration">Duration: </label>
                     <input type="text" name="duration" value={Activity.duration} onChange={handleChange} placeholder='"X" hours...'></input> 
                     <span className={style.errors}>{errors.duration}</span>
                 </div>
                 
-                <div>
             {/*DIFFICULTY LEVEL SELECT*/}
-                    <label htmlFor='difficulty'>Difficulty level: </label>
-                    <input type="radio" id='1' name='difficulty' value='1' onChange={handleChange} />
-                    <label htmlFor='1'>1</label>
-
-                    <input type="radio" id='2' name='difficulty' value='2' onChange={handleChange}/>
-                    <label htmlFor='2'>2</label>
-
-                    <input type="radio" id='3' name='difficulty' value='3' onChange={handleChange}/>
-                    <label htmlFor='3'>3</label>
-
-                    <input type="radio" id='4' name='difficulty' value='4' onChange={handleChange}/>
-                    <label htmlFor='4'>4</label>
-
-                    <input type="radio" id='5' name='difficulty' value='5' onChange={handleChange}/>
-                    <label htmlFor='5'>5</label>
+                <div>
+                    <label htmlFor="difficulty">Level of challenge: </label>
+                    <select value={Activity.difficulty} onChange={handleChange} name="difficulty">
+                    <option value="" disabled>Select</option>
+                    <option value={"1"}>Beginner</option>
+                    <option value={"2"}>Easy</option>
+                    <option value={"3"}>Intermediate</option>
+                    <option value={"4"}>Hard</option>
+                    <option value={"5"}>Expert</option>
+                    </select>
                     <span className={style.errors}>{errors.difficulty}</span>
                 </div>
 
+
             {/* SEASON SELECT */}
                 <div>
-                    <label htmlFor="season"> Season:</label>
+                    <label htmlFor="season"> Season: </label>
                     <select value={Activity.season} onChange={handleChange} name="season" style={{marginBottom:`15px`,marginTop:`15px`}}>
                     <option value="" disabled >Select</option>
                     <option value={"Summer"} >Summer</option>
@@ -145,8 +140,9 @@ const Form = () => {
                     </div>
                     )})}
                 </div>
+                
                 <div className={style.button}>
-                    <button type="submit" disabled={errors.name||errors.difficulty||errors.duration||errors.season||errors.country}>Add activity</button>
+                    <button type="submit">Add activity</button>
                 </div>
         </form>
     )

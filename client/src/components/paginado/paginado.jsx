@@ -16,6 +16,7 @@ return(
                 <a href="#" onClick={()=>{paginado(number)}} >{number}</a>
                 </li>
                 ))}
+           
             </ul>
         </nav>
 

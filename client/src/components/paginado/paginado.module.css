@@ -1,26 +1,47 @@
+
 .paginado {
 display:flex;
 flex-direction: row;
 justify-content: center;
 margin-right: 50px;
+
 }
 
 .paginado li {
    list-style: none;
    text-decoration: none;
-   font-size: 20px;
-   font-weight: bold;
-   border:2px black solid ;
+   font-size: 18px;
+   font-family: 'Courier New', Courier, monospace;
+   border: 1px solid rgb(24, 36, 48);
+   border-radius: 2px;
    width: 35px;
-   height: 30px;
- }
+   height: 25px;
+   background-color: rgba(33, 50, 66, 0.584);
+   text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.708);
+   padding-top: 5px;
+   }
+
+
+   .paginado li:first-child{
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+   }
+   .paginado li:last-child{
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+   }
 
  .paginado li a { 
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none;
+ 
  }
+ .paginado li:hover { 
+transform: scale(1.02);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.505);
+}
 
- .paginado li:active{
-      background-color: #007bff;
-      color: #fff;
- } 
+.numberpage{
+  font-size: 50px;
+}
+

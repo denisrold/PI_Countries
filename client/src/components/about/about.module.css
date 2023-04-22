@@ -3,24 +3,30 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    margin-top:120px;
     width: 870px;
-    height: 570px;
-    background-color: rgba(33, 50, 66, 0.699);
+    height: 560px;
+    margin-top:90px;
+    margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
+    background-color: rgb(33, 50, 66);
     box-shadow: 5px 5px 12px 2px rgba(22, 21, 21, 0.491);
-    
+    color: white;
+    text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.708);
 }
-
+.about h2{
+color: rgb(255, 255, 255);
+}
+/*Text*/
 .containertext{
     width: 800px;
-    height: 400px;
+    height: 420px;
 }
 .containertext h2{
-    margin-top: 40px
+    margin-top: 50px
 }
 
+/*Link rest api */
 .linkSource {
     font-weight: bold;
     font-style: italic;
@@ -30,6 +36,13 @@
 cursor:pointer;
 }
 
+.follow{
+    font-weight:bold; 
+    font-size:22px;
+
+    }
+
+/*Logos*/
 .logos{
     width: 15%;
     cursor:pointer;
@@ -40,15 +53,16 @@ cursor:pointer;
 }
 .logos:hover{
     transform: scale(1.1);
-    box-shadow: 0 0 6px 1.5px rgba(10, 7, 50, 0.571);
+    box-shadow: 0 0 6px 1.5px rgba(2, 1, 8, 0.571);
     filter: brightness(1.1);
 }
 .logos:active{
 transform: scale(0.9);
-box-shadow: 0 0 4px 0.9px rgb(118, 118, 118);
+box-shadow: 1px 1px 4px 0.9px rgb(44, 25, 25);
 }
 
 .orderLog{
     display: flex;
     flex-direction: row;
 }
+

@@ -1,31 +1,69 @@
 .card { 
-    background-color: rgba(240, 240, 240, 0.126);
-    border: 2px solid #000000;
+  background-color: rgba(33, 50, 66, 0.603);
+    border: 1px solid rgb(24, 36, 48);
+    border-radius: 15px;
     padding: 20px;
     width: 60%;
-    height: 90%;
+    height: 95%;
     box-sizing: border-box;
     z-index: 1;
+    color:white;
+    text-shadow: 3px 1.5px 3px rgba(0, 0, 0, 0.708);
+    transition: 0.5s;
   }
+
+  .card:hover{
+    transform: scale(1.05);
+    box-shadow: 2px 1px 6px 1.5px rgba(10, 7, 50, 0.571);
+    filter: brightness(1.1);
+}
 
 .card a {text-decoration: none;}
 
 .card h1{
-    font-size: 22px;
+  margin-top: -8px;
+    font-size: 19px;
+    color:rgb(255, 255, 255)
+    
 }
 
 .card img {
-    width:230px;
-    height: 150px;
+    width: 180px;
+    height: 120px;
     filter: contrast(1.1);
     filter:brightness(1.1);
     filter:saturate(1.1);
+    border: 1px solid rgba(212, 165, 13, 0.845);
 }
 .card h3{
     display: inline-block;
+    font-size: 18.5px;
+    filter: contrast(1.5);
 }
 .card p{
     display: inline-block;
     margin-left: 40px;   
     color: black;
   }
+
+.card .infoIcon{
+    width: 14%;
+    height: 14%;
+    cursor:pointer;
+    border-radius: 999px;
+    transition: 0.5s;
+    margin-left: 10px;
+    margin-right: auto;
+    border: none;
+    box-shadow: 3px 1.5px 3px rgba(0, 0, 0, 0.708);
+  }
+
+.card .infoIcon:hover{
+    
+    box-shadow: 1.5px 1px 1.5px 0.5px rgba(10, 7, 50, 0.571);
+    filter: brightness(1.1);
+}
+.card .infoIcon:active{
+transform: scale(0.9);
+box-shadow: 1px 1px 4px 0.9px rgb(44, 25, 25);
+}

@@ -2,7 +2,7 @@
         display: grid;
         grid-template-columns: repeat(2, 2fr);
         grid-template-rows: repeat(5, 1fr);
-        gap: 10px;
+        gap: 8px;
         margin-left: 250px;
       }
   .onecard{
@@ -10,7 +10,7 @@
       grid-template-columns: repeat(1, 0.7fr);
       grid-template-rows: repeat(1, 1fr);
       gap: 10px;
-      margin-left: 555px;
+      margin-left: 500px;
     }
 
 

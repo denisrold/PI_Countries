@@ -20,7 +20,7 @@ const SearchBar = (props)=>{
 return(
     <div>
         <label htmlFor="search"></label>
-        <input type="text" placeholder=" Search by name" name="search" onChange={handlerOnChange}/>
+        <input type="text" placeholder=" Search by name..." name="search" onChange={handlerOnChange}/>
         <button type="submit" onClick={handlerSearch}>Search </button>
     </div>
 )
