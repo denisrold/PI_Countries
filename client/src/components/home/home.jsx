@@ -120,10 +120,12 @@ const Home = ()=>{
 
             </div>
             <div style={{marginTop: `10px`}}> 
-                <SearchBar setSearchValue={setSearchValue} setOrders={setOrders} />
+                <SearchBar setSearchValue={setSearchValue}
+                setOrders={setOrders} 
+                setCurrentPage={setCurrentPage}/>
             </div>
 
-            <div className={style.pagination}>
+            <div>
                
                 <Pagination 
                 currentPage = {currentPage}

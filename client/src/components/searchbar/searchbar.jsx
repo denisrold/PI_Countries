@@ -17,6 +17,7 @@ const SearchBar = (props)=>{
         props.setSearchValue(name);
         props.setOrders("");
         dispatch(getCountryByName(name));
+        props.setCurrentPage(1);
      }
 return(
     <div>
