@@ -8,13 +8,16 @@ import validate from "./Validations";
 import style from"./form.module.css"
 
 const Form = () => {
+    //getallCountries
     const dispatch = useDispatch();
     const countries = useSelector(state => state.allCountriesAux)
+    const orderCountries = countries.sort((a, b) => a.name.localeCompare(b.name));
     
     useEffect(()=>{
         dispatch(getAllCountries());
     },[dispatch])
-
+    
+    //Local state
     const [Activity, setActivity] = useState({
         name:"",
         difficulty:"", 
@@ -31,16 +34,17 @@ const Form = () => {
         country:"",
     })
 
+    
     const handleChange=(event)=>{
         let property = event.target.name
         
         if(property === "country"){
             const isChecked = event.target.checked;
             let country = event.target.value;
-                if(isChecked){
-                    setActivity({...Activity,
-                        country:[...Activity.country, country] })
-                        
+            if(isChecked){
+                setActivity({...Activity,
+                    country:[...Activity.country, country] })
+                    
                     setErrors(validate({...Activity,[property]: country},errors));
                 }
                 else{
@@ -132,10 +136,10 @@ const Form = () => {
               {/* COUNTRY SELECT */}
                 <span className={style.errors}>{errors.country}</span>
                 <div className={style.countries}>
-                    {countries.map(c => {
+                    {orderCountries.map(c => {
                     return(
                     <div key={c.id}>
-                        <input type="checkbox" id={c.id} name="country" value={c.name} onChange={handleChange}/>
+                        <input checked={Activity.country.includes(c.name)} type="checkbox" id={c.id} name="country" value={c.name} onChange={handleChange}/>
                         <label htmlFor={c.id}>{c.name}</label>
                     </div>
                     )})}

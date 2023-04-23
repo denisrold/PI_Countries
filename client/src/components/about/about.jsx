@@ -1,16 +1,10 @@
 import style from"./about.module.css"
 import ghl from"../utils/img/ghl2.png"
 import linkedinlogo from"../utils/img/LILOG1.png"
-const About = () =>{
-    const handleClickGH = ()=>{
-        window.open('https://github.com/denisrold', '_blank')
-        }
-    const handleClickLI = ()=>{
-        window.open('https://www.linkedin.com/in/denisrold/', '_blank')
-            }
-    const handleClickSource =()=>{
-        window.open('https://restcountries.com/v3/all', '_blank')
-        }        
+import { handleClickGH, handleClickSource, handleClickLI} from"./handlerLinks"
+
+const About = () =>{     
+
     return (
         <div className={style.about}>
             <h2>About Around the world!:</h2>

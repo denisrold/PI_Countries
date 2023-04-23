@@ -3,8 +3,8 @@ import { useEffect, useState} from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { getAllCountries,getAllActivity, filterByRegion,filterByActivity, orderAlpha, orderPopulation } from "../redux/actions";
 import SearchBar from "../searchbar/searchbar";
-import Paginado from"../paginado/paginado";
-import paginadoAux from "../paginado/paginadoAux";
+import Pagination from"../pagination/pagination";
+import paginationAux from "../pagination/paginationAux";
 import style from"./home.module.css"
 import errorOrder from"../utils/errorOrders"
 
@@ -13,29 +13,29 @@ const Home = ()=>{
 
     const dispatch = useDispatch();
     
-    // obtengo  countries de la base de datos.
+    // get countries db
     useEffect(()=>{
     dispatch(getAllCountries());
     dispatch(getAllActivity())
     
     },[dispatch])
     
-    //estado global.
+    //get global state
     const allCountries = useSelector(state => state.allCountries);
     const allActivities = useSelector(state => state.allActivities);
 
     
-    //configuracion del paginado
+    //pagination congifuration
     const [currentPage, setCurrentPage] = useState(1);
     /* eslint-disable-next-line no-unused-vars */
     const [countriesPerPage, setCountriesPerPage] = useState(10);
-    const currentCountries = paginadoAux(currentPage, countriesPerPage, allCountries);
+    const currentCountries = paginationAux(currentPage, countriesPerPage, allCountries);
     
-    const paginado = (pageNumber) => {
+    const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     };
 
-    //mensajes informativos.
+    //info message
     const [filter, setFilter] = useState("All countries");
     const [orders, setOrders] = useState("");
     const [searchValue, setSearchValue] = useState('');
@@ -123,17 +123,18 @@ const Home = ()=>{
                 <SearchBar setSearchValue={setSearchValue} setOrders={setOrders} />
             </div>
 
-            <div className={style.paginado}>
+            <div className={style.pagination}>
                
-                <Paginado 
+                <Pagination 
+                currentPage = {currentPage}
                 countriesPerPage = {countriesPerPage}
                 allCountries = {allCountries.length}
-                paginado = {paginado}
+                pagination = {pagination}
                 />
                 
             </div>
             <h2 className={style.countries}>{searchValue===""? filter : "Country matched:"}</h2>
-                {orders && <h3 style={{fontSize:'20px'}}>{orders}</h3>}
+                {orders && <h3 style={{fontSize:'20px' , marginTop:"-20px"}}>{orders}</h3>}
             
             <Cards currentCountries={currentCountries}/>
             

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getCountryByName} from"../redux/actions"
+import style from"./searchbar.module.css"
 
 const SearchBar = (props)=>{
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const SearchBar = (props)=>{
 return(
     <div>
         <label htmlFor="search"></label>
-        <input type="text" placeholder=" Search by name..." name="search" onChange={handlerOnChange}/>
+        <input className={style.input} type="text" placeholder=" Search by name..." name="search" onChange={handlerOnChange} autoComplete="off"/>
         <button type="submit" onClick={handlerSearch}>Search </button>
     </div>
 )

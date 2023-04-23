@@ -1,5 +1,5 @@
 
-.paginado {
+.pagination {
 display:flex;
 flex-direction: row;
 justify-content: center;
@@ -7,7 +7,7 @@ margin-right: 50px;
 
 }
 
-.paginado li {
+.pagination li {
    list-style: none;
    text-decoration: none;
    font-size: 18px;
@@ -22,21 +22,21 @@ margin-right: 50px;
    }
 
 
-   .paginado li:first-child{
+   .pagination li:first-child{
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
    }
-   .paginado li:last-child{
+   .pagination li:last-child{
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
    }
 
- .paginado li a { 
+ .pagination li a { 
     color: rgb(255, 255, 255);
     text-decoration: none;
  
  }
- .paginado li:hover { 
+ .pagination li:hover { 
 transform: scale(1.02);
 box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.505);
 }
@@ -45,3 +45,22 @@ box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.505);
   font-size: 50px;
 }
 
+
+.currentPage{
+   font-size: 20px;
+   font-weight: bolder;
+   text-shadow: 5px 3px 6px rgba(0, 0, 0, 0.708);
+   
+}
+
+.disabled{
+color: gray;
+background-color: rgb(169, 169, 169);
+border: grey;
+text-shadow: none;
+}
+.disabled:hover{
+   transform: none;
+   filter:none;
+   cursor:default;
+}

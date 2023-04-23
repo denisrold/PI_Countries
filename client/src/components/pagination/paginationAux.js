@@ -1,4 +1,4 @@
-const paginadoAux = (currentPage, countriesPerPage, allCountries) => {
+const paginationAux = (currentPage, countriesPerPage, allCountries) => {
   const indexLastCountry = currentPage * countriesPerPage; // 10
   const indexFirstCountry = indexLastCountry - countriesPerPage; //0
   const currentCountries = allCountries.slice(
@@ -7,4 +7,4 @@ const paginadoAux = (currentPage, countriesPerPage, allCountries) => {
   );
   return currentCountries;
 };
-export default paginadoAux;
+export default paginationAux;

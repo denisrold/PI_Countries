@@ -30,7 +30,7 @@ const notsubRegion = (subRegion)=>{
                 <p>Its capital city is {countryDetails?.capital} and it has a population of approximately {countryDetails?.population} inhabitants.</p>
                 <p>The country's total area is {countryDetails?.area} square kilometers.</p>
             </div>
-                <p  className={style.presentationAct}><b>{countryDetails?.name} is a popular destination for tourists from around the world for the following activities:</b></p>
+            <p  className={style.presentationAct}><b>{countryDetails?.name} is a popular destination for tourists from around the world for the following activities:</b></p>
             <div className={style.activityList}>
                 <ul>{
                 countryDetails.Activities&&countryDetails.Activities.map((a)=>{
