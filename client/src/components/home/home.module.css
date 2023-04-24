@@ -46,3 +46,55 @@ button:active{
 .countries{
     color: rgb(255, 255, 255);
 }
+
+.currentPageNextPrev{
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: lighter;
+    border: 1px solid rgb(24, 36, 48);
+    border-radius: 5px;
+    width: 20px;
+    height: 18px;
+    background-color: rgba(33, 50, 66, 0.573);
+    color: rgba(255, 255, 255, 0.863);
+    padding-top: 2px;
+}
+.currentPageTop{
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    border: 1px solid rgb(24, 36, 48);
+    border-radius: 5px;
+    width: 20px;
+    height: 18px;
+    background-color: rgba(33, 50, 66, 0.573);
+    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.708);
+    padding-top: 2px;
+}
+
+ .disabledPage{
+    color: rgba(128, 128, 128, 0);
+    background-color: rgba(169, 169, 169, 0);
+    border: rgba(128, 128, 128, 0);
+    text-shadow: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 1px;
+    width: 23px;
+    }
+ .disabled{
+ color: gray;
+ background-color: rgb(169, 169, 169);
+ border: grey;
+ text-shadow: none;
+ }
+
+ .disabled:hover{
+    transform: none;
+    filter:none;
+    cursor:default;
+ }

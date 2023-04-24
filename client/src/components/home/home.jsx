@@ -17,7 +17,7 @@ const Home = ()=>{
     useEffect(()=>{
     dispatch(getAllCountries());
     dispatch(getAllActivity())
-    
+ 
     },[dispatch])
     
     //get global state
@@ -29,8 +29,11 @@ const Home = ()=>{
     const [currentPage, setCurrentPage] = useState(1);
     /* eslint-disable-next-line no-unused-vars */
     const [countriesPerPage, setCountriesPerPage] = useState(10);
+  
     const currentCountries = paginationAux(currentPage, countriesPerPage, allCountries);
-    
+    const [pages, setPages] =useState({
+    })
+    console.log(pages);
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     };
@@ -81,6 +84,7 @@ const Home = ()=>{
         errorOrder(currentCountries,setOrders);
     }
 
+    /**PRUEBA DE NEXT Y PREV */
 
     
     return(
@@ -120,26 +124,34 @@ const Home = ()=>{
 
             </div>
             <div style={{marginTop: `10px`}}> 
-                <SearchBar setSearchValue={setSearchValue}
+                <SearchBar 
+                setSearchValue={setSearchValue}
                 setOrders={setOrders} 
-                setCurrentPage={setCurrentPage}/>
-            </div>
-
-            <div>
-               
-                <Pagination 
-                currentPage = {currentPage}
-                countriesPerPage = {countriesPerPage}
-                allCountries = {allCountries.length}
-                pagination = {pagination}
+                setCurrentPage={setCurrentPage}
                 />
                 
             </div>
+            <button className={currentPage === 1?style.disabled:style.pageMove} onClick={()=>{pagination(currentPage - 1)}} disabled={currentPage === 1}>Prev</button>
+            <span className={currentPage-1<  1? style.disabledPage:style.currentPageNextPrev}>{currentPage-1}</span>
+            <span className={style.currentPageTop}>{currentPage}</span>
+            <span className={currentPage+1> pages? style.disabledPage:style.currentPageNextPrev}>{currentPage+1}</span>
+            <button className={currentPage=== pages?style.disabled:style.pageMove}onClick={()=>{pagination(currentPage +1)}} disabled={currentPage=== pages}>Next</button>
+         
             <h2 className={style.countries}>{searchValue===""? filter : "Country matched:"}</h2>
                 {orders && <h3 style={{fontSize:'20px' , marginTop:"-20px"}}>{orders}</h3>}
             
             <Cards currentCountries={currentCountries}/>
-            
+            <div>
+               
+               <Pagination 
+               currentPage = {currentPage}
+               countriesPerPage = {countriesPerPage}
+               allCountries = {allCountries.length}
+               pagination = {pagination}
+               setPages={setPages}
+               />
+               
+           </div>
         </div>
     )
 }
