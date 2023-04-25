@@ -1,6 +1,6 @@
 const paginationAux = (currentPage, countriesPerPage, allCountries) => {
-  const indexLastCountry = currentPage * countriesPerPage; // 10
-  const indexFirstCountry = indexLastCountry - countriesPerPage; //0
+  const indexLastCountry = currentPage * countriesPerPage; // last index country  for current page
+  const indexFirstCountry = indexLastCountry - countriesPerPage; // first index country for current page
   const currentCountries = allCountries.slice(
     indexFirstCountry,
     indexLastCountry

@@ -12,7 +12,7 @@ const [countryDetails, setCountryDetails] = useState([]);
 
 useEffect( ()=>{
     axios.get(`http://localhost:3001/countries/${id}`)
-    .then((res)=>{setCountryDetails(res.data)})          
+    .then((res)=>{setCountryDetails(res.data)})
 },[id])
 
 const notsubRegion = (subRegion)=>{

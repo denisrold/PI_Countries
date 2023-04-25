@@ -7,6 +7,7 @@ const pageNumbers = [];
 for(let i=0; i <= Math.ceil(allCountries/countriesPerPage) - 1; i++){
     pageNumbers.push(i+1);
 }
+
 //pagination buttons previus-next
 
 let countNumberPage = Math.ceil(allCountries/countriesPerPage)
@@ -18,7 +19,6 @@ useEffect(()=>{
 return(
         <nav>
             <ul className={style.pagination}>
-               
                 {pageNumbers && pageNumbers.map(number=>(
                 <li key={number}>
                 { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }

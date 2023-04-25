@@ -24,6 +24,7 @@ const reducer = (state = initialState, actions) => {
         allCountries: actions.payload,
         allCountriesAux: actions.payload,
       };
+
     case GET_COUNTRY_BY_NAME:
       return {
         ...state,
@@ -41,7 +42,7 @@ const reducer = (state = initialState, actions) => {
         actions.payload === "All countries"
           ? allCountries
           : allCountries.filter((c) => c.region === actions.payload);
-      console.log(filtered);
+
       return {
         ...state,
         allCountries: filtered,

@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch} from"react-redux";
-import { getAllActivity } from "../redux/actions";
+import { getAllActivity, getAllCountries } from "../redux/actions";
 import { useSelector } from "react-redux";
-import  {getAllCountries} from"../redux/actions";
 import validate from "./Validations";
 import style from"./form.module.css"
 
@@ -144,9 +143,9 @@ const Form = () => {
                     </div>
                     )})}
                 </div>
-                
-                <div className={style.button}>
-                    <button type="submit">Add activity</button>
+                {/* Add button */}
+                <div className={!Activity.name||!Activity.difficulty||!Activity.duration||!Activity.season||!Activity.country.length?style.disabled:style.button}>
+                    <button type="submit" disabled={!Activity.name||!Activity.difficulty||!Activity.duration||!Activity.season||!Activity.country.length} >Add activity</button>
                 </div>
         </form>
     )
