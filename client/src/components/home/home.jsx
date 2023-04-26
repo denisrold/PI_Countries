@@ -1,7 +1,7 @@
 import Cards from "../cards/cards";
 import { useEffect, useState} from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { getAllCountries,getAllActivity, filterByRegion,filterByActivity, orderAlpha, orderPopulation } from "../redux/actions";
+import {getAllCountries, getAllActivity, filterByRegion,filterByActivity, orderAlpha, orderPopulation } from "../redux/actions";
 import SearchBar from "../searchbar/searchbar";
 import Pagination from"../pagination/pagination";
 import paginationAux from "../pagination/paginationAux";
@@ -15,8 +15,8 @@ const Home = ()=>{
     
     // get countries db
     useEffect(()=>{
-    dispatch(getAllCountries());
     dispatch(getAllActivity());
+    dispatch(getAllCountries());
     },[dispatch])
     
     //get global state
@@ -128,11 +128,11 @@ const Home = ()=>{
             </div>
 
             {/* Prev-Next button pagination */}
-            <button className={currentPage === 1?style.disabled:style.pageMove} onClick={()=>{pagination(currentPage - 1)}} disabled={currentPage === 1}>Prev</button>
+            {pages>1?<button className={currentPage === 1?style.disabled:style.pageMove} onClick={()=>{pagination(currentPage - 1)}} disabled={currentPage === 1}>Prev</button>:null}
             <span className={currentPage-1<  1? style.disabledPage:style.currentPageNextPrev}>{currentPage-1}</span>
             <span className={style.currentPageTop}>{currentPage}</span>
             <span className={currentPage+1> pages? style.disabledPage:style.currentPageNextPrev}>{currentPage+1}</span>
-            <button className={currentPage=== pages?style.disabled:style.pageMove}onClick={()=>{pagination(currentPage +1)}} disabled={currentPage=== pages}>Next</button>
+            {pages>1?<button className={currentPage=== pages?style.disabled:style.pageMove}onClick={()=>{pagination(currentPage +1)}} disabled={currentPage=== pages}>Next</button>:null}
             
             {/* Filter & Order State Message */}
             <h2 className={style.countries}>{searchValue===""? filter : "Country matched:"}</h2>

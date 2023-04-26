@@ -70,7 +70,7 @@ const reducer = (state = initialState, actions) => {
 
     case ORDEN_ALPHA:
       const alphabetic = [...state.allCountries];
-      const order = alphabetic;
+      let order = alphabetic;
       if (actions.payload === "A - Z") {
         order.sort((a, b) => a.name.localeCompare(b.name));
       }

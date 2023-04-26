@@ -1,9 +1,10 @@
 import {Link} from"react-router-dom"
 import style from"./landingpage.module.css"
-//import styles from"./landingpage.module.css"
+
+
+
 
 const LandingPage = ()=>{
-
     return(
         <div className={style.lateral}>
             <div className={style.container}>

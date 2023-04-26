@@ -12,6 +12,7 @@ const createActivity = async (req, res) => {
         duration,
         season,
       });
+
       const countries = await Country.findAll({ where: { name: country } });
       if (!countries) {
         return res.status(404).json("Country not found");
