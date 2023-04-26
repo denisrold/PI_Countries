@@ -17,7 +17,7 @@ const createActivity = async (req, res) => {
         return res.status(404).json("Country not found");
       }
       await newAct.addCountry(countries);
-      await newAct.reload(); //actualizar la página actual de la variable "newAct"
+      await newAct.reload();
       res.status(200).json(newAct);
     }
   } catch (error) {

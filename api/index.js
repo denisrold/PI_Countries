@@ -1,6 +1,5 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
-const saveApiData = require("./src/controllers/saveApiData.js");
 const axios = require("axios");
 
 // Syncing all the models at once.
@@ -14,5 +13,8 @@ conn
   .then(async () => {
     await axios
       .get("http://localhost:3001/saveall")
-      .then(console.log("saveApiDataOK"));
+      .then(console.log("saveApiDataOK"))
+      .catch((error) => {
+        console.error("Error in the HTTP request: ", error);
+      });
   });

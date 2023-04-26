@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const saveApiData = require("../controllers/saveApiData");
-const getCountries = require("../controllers/getAllChars");
+const getCountries = require("../controllers/getAllCountries");
 const getCountryByID = require("../controllers/getById");
 const createActivity = require("../controllers/createActivity");
 const {
@@ -9,6 +9,7 @@ const {
   getActivityById,
 } = require("../controllers/getActivities");
 const deleteActivity = require("../controllers/deleteActivity");
+
 //router
 const router = Router();
 
@@ -55,6 +56,7 @@ router.get("/activities/:id", async (req, res) => {
 });
 
 router.post("/activities", createActivity);
+
 router.delete("/activities/:id", async (req, res) => {
   try {
     const { id } = req.params;

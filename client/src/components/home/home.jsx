@@ -25,6 +25,7 @@ const Home = ()=>{
     
     //pagination congifuration
     const [currentPage, setCurrentPage] = useState(1);
+
     /* eslint-disable-next-line no-unused-vars */
     const [countriesPerPage, setCountriesPerPage] = useState(10);
   
@@ -60,14 +61,13 @@ const Home = ()=>{
         setCurrentPage(1);
         event.target.value = "default"
         setFilter(message)
-        
     }
 
     //handlers orders
     const handleOrderAlpha=(event)=>{
         let message = event.target.value;
         dispatch(orderAlpha(event.target.value))
-         event.target.value = "default"
+        event.target.value = "default"
         setCurrentPage(1);
         setOrders(message)
         errorOrder(currentCountries,setOrders);
