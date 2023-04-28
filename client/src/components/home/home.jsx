@@ -15,8 +15,8 @@ const Home = ()=>{
     
     // get countries db
     useEffect(()=>{
-    dispatch(getAllActivity());
     dispatch(getAllCountries());
+    dispatch(getAllActivity());
     },[dispatch])
     
     //get global state

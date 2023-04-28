@@ -9,12 +9,12 @@ import style from"./form.module.css"
 const Form = () => {
     //getallCountries
     const dispatch = useDispatch();
-    const countries = useSelector(state => state.allCountriesAux)
-    const orderCountries = countries.sort((a, b) => a.name.localeCompare(b.name));
+    const countries = [...useSelector(state => state.allCountriesAux)]
     
     useEffect(()=>{
         dispatch(getAllCountries());
     },[dispatch])
+    const orderCountries = countries.sort((a, b) => a.name.localeCompare(b.name));
     
     //Local state
     const [Activity, setActivity] = useState({
